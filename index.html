@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Floaria</title>
+  <link rel="icon" type="image/svg+xml" href="./src/vectors/Icon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="font-caption">
+  <header>
+    <!--
+    <nav class="navigation">
+      <a class="font-caption-w link-button" href="#">Início</a>
+      <a class="font-caption-w link-button" href="#">Sobre</a>
+    </nav>
+    -->
+
+    <img src="./src/vectors/Logo.svg" alt="Logo do site Floaria">
+
+    <div class="social">
+      <a class="font-caption-w link-button" href="https://www.linkedin.com/in/samuel-llopes/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a class="font-caption-w link-button" href="https://github.com/samuel-llp" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="search">
+      <div class="input-wrapper glass-primary">
+        <input 
+          type="text" 
+          id="searchInput" 
+          class="font-base" 
+          placeholder="Pesquise sobre a flora brasileira"
+          aria-label="Pesquise sobre a flora brasileira"
+        >
+        <button onclick="search()" class="button glass-secundary"></button>
+      </div>
+    </section>
+
+    <section id="results" class="card-wrap"></section>
+  </main>
+
+  <footer>
+    <a class="font-caption-w link-button" href="mailto:contato.samuellopes01@gmail.com?subject=Contato&body=Muito%20bacana%20seu%20projeto!">Contato</a>
+    <p class="font-caption-w all-rights">© Floaria, 2024</p>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+
+</html>
