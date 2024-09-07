@@ -39,7 +39,6 @@ O projeto visa criar uma interface web que permite a manipulação e visualizaç
 - `index.html` - O arquivo principal HTML.
 - `styles.css` - Estilos do projeto.
 - `script.js` - Funcionalidades JavaScript.
-- `data/` - Dados utilizados no projeto.
 
 ## Contribuição
 
