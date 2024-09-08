@@ -24,7 +24,7 @@ Foi desenvolvido com o intuito de aprender sobre os fundamentos básicos do Java
     ```
 3. Abra o arquivo `index.html` em seu navegador para visualizar o projeto.
 
-## Planos de Atualizações
+## Atualizações
 
 - ✅ Realizar a busca pressionando Enter.
 - ✅ Resultados aparecem em ordem alfabética.
