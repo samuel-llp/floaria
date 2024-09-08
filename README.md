@@ -29,7 +29,7 @@ Foi desenvolvido com o intuito de aprender sobre os fundamentos básicos do Java
 
 - ✅ Resultados aparecem em ordem alfabética.
 - ✅ Transformar os resultados em cards clicáveis.
-- Adicionar responsividade.
+- ✅ Adicionar responsividade.
 - Adicionar sugestões de pesquisa.
 - Criar novas telas.
 
