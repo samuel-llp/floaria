@@ -52,4 +52,3 @@ Se você deseja contribuir para este projeto, siga os passos abaixo:
    git push origin minha-contribuicao
    ```
 5. **Abra um pull request** no repositório original.
-```
