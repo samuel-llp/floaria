@@ -232,23 +232,32 @@ const flowers = [
   },
 ];
 
-function formatString(str) {
-  return str
+function formatString(text) {
+  return text
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase();
 }
 
-function search() {
-  const query = formatString(document.getElementById('searchInput').value);
-  
-  const filteredFlowers = flowers.filter(flower => 
-    formatString(flower.name).includes(query) ||
-    formatString(flower.scientificName).includes(query) ||
-    formatString(flower.tag).includes(query)
-  );
+function getSearchQuery() {
+  return formatString(document.getElementById('searchInput').value);
+}
 
-  updateFlower(filteredFlowers);
+function filterFlowers(query) {
+  return flowers.filter(flower =>
+    formatString(flower.name).includes(query)
+  );
+}
+
+function updateFlower(flowers) {
+  const resultsSection = document.getElementById('results');
+  const sortedFlowers = flowers.sort((a, b) => a.name.localeCompare(b.name));
+  resultsSection.innerHTML = sortedFlowers.length ? sortedFlowers.map(renderFlower).join('') : renderNoResults();
+  attachCardToggle();
+}
+
+function renderNoResults() {
+  return `<p class="font-caption">Nada foi encontrado. Tente outra busca.</p>`;
 }
 
 function renderFlower(flower) {
@@ -266,7 +275,7 @@ function renderFlower(flower) {
           <p class="font-caption">${flower.description}</p>
         </div>
       </div>
-      
+
       <div class="card-preview glass-card">
         <div class="image-container">
           <img src="${flower.imageUrl}" alt="${flower.name}" class="image glass-card"/>
@@ -286,57 +295,84 @@ function renderFlower(flower) {
         </div>
       </div>
     </div>
-    
     <div class="overlay"></div>
   `;
 }
 
-function updateFlower(flowers) {
-  const section = document.getElementById("results");
-  
-  const sortedFlowers = flowers.sort((a, b) => a.name.localeCompare(b.name));
-
-  if (sortedFlowers.length === 0) {
-    section.innerHTML = `<p class="font-caption">Nada foi encontrado. Tente outra busca.</p>`;
-  } else {
-    section.innerHTML = sortedFlowers.map(renderFlower).join('');
-    attachCardToggle();
-  }
-}
-
 function handleSearchOnEnter(event) {
   if (event.key === 'Enter') {
-    search();
+    searchFlowers();
     event.preventDefault();
   }
 }
 
-document.getElementById('searchInput').addEventListener('keydown', handleSearchOnEnter);
+function searchFlowers() {
+  const query = getSearchQuery();
+  const filteredFlowers = filterFlowers(query);
+  updateFlower(filteredFlowers);
+}
 
 function attachCardToggle() {
   document.querySelectorAll('.flower-card').forEach(card => {
     card.addEventListener('click', (event) => {
       event.stopPropagation();
-      
-      const previewCard = card.querySelector('.card-preview');
-      const overlay = document.querySelector('.overlay');
-      
-      if (previewCard.style.display === 'block') {
-        previewCard.style.display = 'none';
-        overlay.style.display = 'none';
-      } else {
-        previewCard.style.display = 'block';
-        overlay.style.display = 'block';
-      }
+      togglePreview(card);
     });
   });
   
-  document.querySelector('.overlay').addEventListener('click', () => {
-    document.querySelectorAll('.card-preview').forEach(previewCard => {
-      previewCard.style.display = 'none';
-    });
-    document.querySelector('.overlay').style.display = 'none';
+  document.querySelector('.overlay').addEventListener('click', hideAllPreviews);
+}
+
+function togglePreview(card) {
+  const previewCard = card.querySelector('.card-preview');
+  const overlay = document.querySelector('.overlay');
+  const isPreviewVisible = previewCard.style.display === 'block';
+  
+  previewCard.style.display = isPreviewVisible ? 'none' : 'block';
+  overlay.style.display = isPreviewVisible ? 'none' : 'block';
+}
+
+function hideAllPreviews() {
+  document.querySelectorAll('.card-preview').forEach(previewCard => {
+    previewCard.style.display = 'none';
+  });
+  document.querySelector('.overlay').style.display = 'none';
+}
+
+function showSuggestions() {
+  const input = getSearchQuery();
+  const suggestionsContainer = document.getElementById('suggestions');
+  suggestionsContainer.innerHTML = '';
+
+  if (input) {
+    const suggestions = filterFlowers(input);
+    renderSuggestions(suggestions);
+  }
+}
+
+function renderSuggestions(suggestions) {
+  const suggestionsContainer = document.getElementById('suggestions');
+  
+  suggestions.forEach(flower => {
+    const suggestionItem = createSuggestionItem(flower);
+    suggestionsContainer.appendChild(suggestionItem);
   });
 }
+
+function createSuggestionItem(flower) {
+  const suggestionItem = document.createElement('li');
+  suggestionItem.textContent = flower.name;
+  suggestionItem.onclick = () => selectSuggestion(flower.name);
+  return suggestionItem;
+}
+
+function selectSuggestion(name) {
+  document.getElementById('searchInput').value = name;
+  document.getElementById('suggestions').innerHTML = '';
+  searchFlowers();
+}
+
+document.getElementById('searchInput').addEventListener('keydown', handleSearchOnEnter);
+document.getElementById('searchInput').addEventListener('input', showSuggestions);
 
 updateFlower(flowers);

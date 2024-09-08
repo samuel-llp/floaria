@@ -92,17 +92,16 @@ header {
 }
 
 .social .link-button::after {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   content: url('./src/icons/square-arrow-out-up-right.svg');
 }
 
 .search {
+  z-index: 1;
   display: flex;
   justify-content: center;
   padding: 2rem 0;
   gap: 1rem;
+  position: relative;
 }
 
 .input-wrapper {
@@ -135,7 +134,30 @@ header {
   color: var(--placeholder);
 }
 
-.button {
+#suggestions {
+  list-style: none;
+  color: var(--gold-50);
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+  max-height: 15rem;
+  overflow-y: auto;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+}
+
+#suggestions li {
+  background-color: #3c3b16d5;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  transition: background-color ease-out 100ms;
+}
+
+#suggestions li:hover {
+  background-color: var(--gold-300);
+}
+
+.button-search {
   content: url('./src/icons/search.svg');
   width: 2.25rem;
   height: 2.25rem;
@@ -150,7 +172,7 @@ header {
   transition: ease-out 100ms;
 }
 
-.button:hover {
+.button-search:hover {
   background-color: var(--gold-300);
 }
 
@@ -159,7 +181,7 @@ header {
   flex-flow: row wrap;
   justify-content: center;
   align-items: flex-start;
-  padding: 0 10rem;
+  padding: 0 7rem;
   gap: 4rem 2rem;
   margin-bottom: 4rem;
 }
@@ -178,7 +200,7 @@ header {
 }
 
 .card-preview {
-  z-index: 2;
+  z-index: 3;
   display: none;
   flex-direction: column;
   border-radius: 1rem;
@@ -193,7 +215,7 @@ header {
 }
 
 .overlay {
-  z-index: 1;
+  z-index: 2;
   display: none;
   position: fixed;
   top: 0;
@@ -339,23 +361,23 @@ footer .link-button::before {
 @media (max-width: 450px) {
   header {
     height: 4rem;
-    padding: 1rem 1rem;
+    padding: 1rem;
   }
-  
+
   .navigation {
-    gap: 0rem;
+    gap: 0;
   }
-  
+
   .logo {
     width: 92px;
   }
-  
+
   .social {
-    gap: 0rem;
+    gap: 0;
   }
-  
+
   .link-button {
-    padding: 14px 14px;
+    padding: 14px;
   }
 
   .search {
@@ -364,7 +386,7 @@ footer .link-button::before {
 
   .card-wrap {
     padding: 0 1rem;
-    gap: 2rem 2rem;
+    gap: 2rem;
     margin-bottom: 2rem;
   }
 
@@ -377,6 +399,6 @@ footer .link-button::before {
   }
 
   .all-rights {
-    padding: 14px 14px;
+    padding: 14px;
   }
 }
