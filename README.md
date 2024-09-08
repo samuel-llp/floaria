@@ -4,7 +4,7 @@
 
 Floaria é um projeto dedicado a explorar e celebrar a flora brasileira de forma interativa. Os usuários podem descobrir detalhes sobre diversas espécies de flores, incluindo suas características, períodos de floração e cuidados necessários.
 
-Foi desenvolvido com o intuito de aprender sobre os fundamentos básicos do JavaScript durante o evento Imersão Dev com Google Gemini da Alura
+Foi desenvolvido com o intuito de aprender sobre os fundamentos básicos do JavaScript durante o evento Imersão Dev com Google Gemini da Alura.
 
 ## Tecnologias
 
@@ -28,8 +28,8 @@ Foi desenvolvido com o intuito de aprender sobre os fundamentos básicos do Java
 ## Planos de Atualizações
 
 - Adicionar responsividade
-- Adicionar sugestões de pesquisas
-- Novas telas
+- Adicionar sugestões de pesquisa
+- Criar novas telas
 
 ## Contribuição
 
@@ -43,7 +43,7 @@ Se você deseja contribuir para este projeto, siga os passos abaixo:
    ```
 3. Faça suas alterações e commit:
    ```bash
-   git commit -am 'add new-function'
+   git commit -am 'adicionar nova funcionalidade'
    ```
 4. Envie para o repositório remoto:
    ```bash
