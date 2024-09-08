@@ -240,7 +240,7 @@ function formatString(text) {
 }
 
 function getSearchQuery() {
-  return formatString(document.getElementById('searchInput').value);
+  return formatString(document.getElementById('searchInput').value.trim());
 }
 
 function filterFlowers(query) {
@@ -249,18 +249,19 @@ function filterFlowers(query) {
   );
 }
 
-function updateFlower(flowers) {
+function updateFlowerCards(flowers) {
   const resultsSection = document.getElementById('results');
-  const sortedFlowers = flowers.sort((a, b) => a.name.localeCompare(b.name));
-  resultsSection.innerHTML = sortedFlowers.length ? sortedFlowers.map(renderFlower).join('') : renderNoResults();
-  attachCardToggle();
+  resultsSection.innerHTML = flowers.length ? 
+    flowers.sort((a, b) => a.name.localeCompare(b.name)).map(renderFlowerCard).join('') : 
+    renderNoResultsMessage();
+  attachCardToggleEvents();
 }
 
-function renderNoResults() {
+function renderNoResultsMessage() {
   return `<p class="font-caption">Nada foi encontrado. Tente outra busca.</p>`;
 }
 
-function renderFlower(flower) {
+function renderFlowerCard(flower) {
   return `
     <div class="flower-card">
       <div class="card-hidden">
@@ -275,7 +276,6 @@ function renderFlower(flower) {
           <p class="font-caption">${flower.description}</p>
         </div>
       </div>
-
       <div class="card-preview glass-card">
         <div class="image-container">
           <img src="${flower.imageUrl}" alt="${flower.name}" class="image glass-card"/>
@@ -307,12 +307,12 @@ function handleSearchOnEnter(event) {
 }
 
 function searchFlowers() {
-  const query = getSearchQuery();
-  const filteredFlowers = filterFlowers(query);
-  updateFlower(filteredFlowers);
+  updateFlowerCards(filterFlowers(getSearchQuery()));
 }
 
-function attachCardToggle() {
+function attachCardToggleEvents() {
+  const overlay = document.querySelector('.overlay');
+  
   document.querySelectorAll('.flower-card').forEach(card => {
     card.addEventListener('click', (event) => {
       event.stopPropagation();
@@ -320,23 +320,24 @@ function attachCardToggle() {
     });
   });
   
-  document.querySelector('.overlay').addEventListener('click', hideAllPreviews);
+  overlay.addEventListener('click', hideAllPreviews);
 }
 
 function togglePreview(card) {
   const previewCard = card.querySelector('.card-preview');
   const overlay = document.querySelector('.overlay');
-  const isPreviewVisible = previewCard.style.display === 'block';
   
-  previewCard.style.display = isPreviewVisible ? 'none' : 'block';
-  overlay.style.display = isPreviewVisible ? 'none' : 'block';
+  const isVisible = previewCard.classList.contains('visible');
+  
+  previewCard.classList.toggle('visible', !isVisible);
+  overlay.classList.toggle('visible', !isVisible);
 }
 
 function hideAllPreviews() {
-  document.querySelectorAll('.card-preview').forEach(previewCard => {
-    previewCard.style.display = 'none';
-  });
-  document.querySelector('.overlay').style.display = 'none';
+  document.querySelectorAll('.card-preview').forEach(previewCard => 
+    previewCard.classList.remove('visible')
+  );
+  document.querySelector('.overlay').classList.remove('visible');
 }
 
 function showSuggestions() {
@@ -345,8 +346,7 @@ function showSuggestions() {
   suggestionsContainer.innerHTML = '';
 
   if (input) {
-    const suggestions = filterFlowers(input);
-    renderSuggestions(suggestions);
+    renderSuggestions(filterFlowers(input));
   }
 }
 
@@ -354,8 +354,7 @@ function renderSuggestions(suggestions) {
   const suggestionsContainer = document.getElementById('suggestions');
   
   suggestions.forEach(flower => {
-    const suggestionItem = createSuggestionItem(flower);
-    suggestionsContainer.appendChild(suggestionItem);
+    suggestionsContainer.appendChild(createSuggestionItem(flower));
   });
 }
 
@@ -367,7 +366,8 @@ function createSuggestionItem(flower) {
 }
 
 function selectSuggestion(name) {
-  document.getElementById('searchInput').value = name;
+  const searchInput = document.getElementById('searchInput');
+  searchInput.value = name;
   document.getElementById('suggestions').innerHTML = '';
   searchFlowers();
 }
@@ -375,4 +375,4 @@ function selectSuggestion(name) {
 document.getElementById('searchInput').addEventListener('keydown', handleSearchOnEnter);
 document.getElementById('searchInput').addEventListener('input', showSuggestions);
 
-updateFlower(flowers);
+updateFlowerCards(flowers);

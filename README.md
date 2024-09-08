@@ -4,7 +4,7 @@
 
 Floaria é um projeto dedicado a explorar e celebrar a flora brasileira de forma interativa. Os usuários podem descobrir detalhes sobre diversas espécies de flores, incluindo suas características, períodos de floração e cuidados necessários.
 
-Foi desenvolvido com o intuito de aprender sobre os fundamentos básicos do JavaScript durante o evento Imersão Dev com Google Gemini da Alura.
+Foi desenvolvido com o intuito de aprender sobre os fundamentos básicos do JavaScript durante o evento Imersão Dev com Google Gemini da Alura. O código implementa uma funcionalidade de busca, filtrando e exibindo resultados de forma organizada. O código segue práticas de clean code para garantir eficiência e clareza
 
 ## Tecnologias
 
