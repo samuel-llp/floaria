@@ -1,44 +1,35 @@
 # Floaria
 
-**Floaria** é um projeto desenvolvido durante o evento Imersão Dev com Google Gemini da Alura. O objetivo deste projeto é aprender os fundamentos básicos do JavaScript, como manipulação de dados, enquanto explora formas criativas de aplicar esses conceitos.
+![img](./src/img/screenshot.png)
 
-O projeto visa criar uma interface web que permite a manipulação e visualização de dados relacionados a flora brasileira, utilizando JavaScript para implementar funcionalidades interativas e responsivas.
+Floaria é um projeto dedicado a explorar e celebrar a flora brasileira de forma interativa. Os usuários podem descobrir detalhes sobre diversas espécies de flores, incluindo suas características, períodos de floração e cuidados necessários.
 
-## Funcionalidades
+Foi desenvolvido com o intuito de aprender sobre os fundamentos básicos do JavaScript durante o evento Imersão Dev com Google Gemini da Alura
 
-- **Manipulação de Dados:** Processamento e manipulação de dados.
-
-## Atualizações Futuras
-
-- **Exibição Interativa:** Apresentação de dados de forma visual e interativa.
-- **Responsividade:** Layout adaptável para diferentes tamanhos de tela.
-
-## Tecnologias Utilizadas
+## Tecnologias
 
 - **HTML5**
 - **CSS3**
 - **JavaScript**
 - **Google Gemini**
 
-## Como Executar
+## Instalação
 
-1. Clone este repositório:
-   ```bash
-   git clone https://github.com/username/floaria.git
-   ```
-
+1. Clone este repositório em sua máquina local:
+    ```bash
+    git clone https://github.com/seu-usuario/floaria.git
+    ```
 2. Navegue até o diretório do projeto:
-   ```bash
-   cd floaria
-   ```
-
+    ```bash
+    cd floaria
+    ```
 3. Abra o arquivo `index.html` em seu navegador para visualizar o projeto.
 
-## Estrutura do Projeto
+## Planos de Atualizações
 
-- `index.html` - O arquivo principal HTML.
-- `styles.css` - Estilos do projeto.
-- `script.js` - Funcionalidades JavaScript.
+- Adicionar responsividade
+- Adicionar sugestões de pesquisas
+- Novas telas
 
 ## Contribuição
 
@@ -52,7 +43,7 @@ Se você deseja contribuir para este projeto, siga os passos abaixo:
    ```
 3. Faça suas alterações e commit:
    ```bash
-   git commit -am 'Adiciona nova funcionalidade'
+   git commit -am 'add new-function'
    ```
 4. Envie para o repositório remoto:
    ```bash

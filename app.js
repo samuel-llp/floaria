@@ -239,13 +239,6 @@ function formatString(str) {
     .toLowerCase();
 }
 
-function formatString(str) {
-  return str
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase();
-}
-
 function search() {
   const query = formatString(document.getElementById('searchInput').value);
   
