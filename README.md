@@ -11,7 +11,6 @@ Foi desenvolvido com o intuito de aprender sobre os fundamentos básicos do Java
 - **HTML5**
 - **CSS3**
 - **JavaScript**
-- **Google Gemini**
 
 ## Instalação
 
@@ -27,6 +26,7 @@ Foi desenvolvido com o intuito de aprender sobre os fundamentos básicos do Java
 
 ## Planos de Atualizações
 
+- ✅ Realizar a busca pressionando Enter.
 - ✅ Resultados aparecem em ordem alfabética.
 - ✅ Transformar os resultados em cards clicáveis.
 - ✅ Adicionar responsividade.
