@@ -37,18 +37,19 @@ Foi desenvolvido com o intuito de aprender sobre os fundamentos básicos do Java
 
 Se você deseja contribuir para este projeto, siga os passos abaixo:
 
-1. Faça um fork do repositório.
-   
-2. Crie uma nova branch:
+1. **Faça um fork do repositório**.
+
+2. **Crie uma nova branch** para sua contribuição:
    ```bash
    git checkout -b minha-contribuicao
    ```
-3. Faça suas alterações e commit:
+3. **Faça suas alterações e commit**:
    ```bash
-   git commit -am 'adicionar nova funcionalidade'
+   git commit -m 'Adicionar nova funcionalidade'
    ```
-4. Envie para o repositório remoto:
+4. **Envie as alterações para o repositório remoto**:
    ```bash
    git push origin minha-contribuicao
    ```
-5. Crie um pull request.
+5. **Abra um pull request** no repositório original.
+```
