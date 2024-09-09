@@ -18,7 +18,6 @@ const flowers = [
     origin: "Ásia e adaptado ao Brasil.",
     floweringPeriod: "Primavera e verão.",
     cultivation: "Precisa de sol pleno e rega frequente para crescer saudavelmente.",
-    tag: "flor arbusto primavera verão paisagismo chá",
     infoLink: "https://pt.wikipedia.org/wiki/Hibiscus",
   },
   {
@@ -29,7 +28,6 @@ const flowers = [
     origin: "Brasil.",
     floweringPeriod: "Primavera e verão.",
     cultivation: "Requer clima quente e úmido, com boa drenagem e luz indireta.",
-    tag: "orquídea flor tropical primavera verão decoração",
     infoLink: "https://pt.wikipedia.org/wiki/Cattleya",
   },
   {
@@ -40,7 +38,6 @@ const flowers = [
     origin: "Brasil.",
     floweringPeriod: "Variável.",
     cultivation: "Prefere solos bem drenados e necessita de rega moderada.",
-    tag: "flor tropical exótica jardim bromélia água",
     infoLink: "https://pt.wikipedia.org/wiki/Brom%C3%A9lia",
   },
   {
@@ -51,7 +48,6 @@ const flowers = [
     origin: "Brasil.",
     floweringPeriod: "Primavera e verão.",
     cultivation: "Necessita de clima tropical e solo bem drenado.",
-    tag: "flor árvore símbolo brasil madeira tropical",
     infoLink: "https://pt.wikipedia.org/wiki/Pau-brasil",
   },
   {
@@ -62,7 +58,6 @@ const flowers = [
     origin: "Brasil.",
     floweringPeriod: "Verão.",
     cultivation: "Prefere clima seco e solo bem drenado.",
-    tag: "flor resistência seca decoração arranjos",
     infoLink: "https://pt.wikipedia.org/wiki/Sempre-viva",
   },
   {
@@ -73,7 +68,6 @@ const flowers = [
     origin: "Brasil.",
     floweringPeriod: "Primavera e verão.",
     cultivation: "Sol pleno e solo bem drenado.",
-    tag: "flor árvore madeira culinária medicinal",
     infoLink: "https://pt.m.wikipedia.org/wiki/Ficheiro:Flor-do-jatoba.jpg",
   },
   {
@@ -84,7 +78,6 @@ const flowers = [
     origin: "Amazônia, Brasil.",
     floweringPeriod: "Verão.",
     cultivation: "Requer águas rasas e tranquilas, com clima quente e úmido.",
-    tag: "flor aquática amazônia noite verão",
     infoLink: "https://pt.wikipedia.org/wiki/Victoria_amazonica",
   },
   {
@@ -95,7 +88,6 @@ const flowers = [
     origin: "Nordeste, Brasil.",
     floweringPeriod: "Primavera e verão.",
     cultivation: "Precisa de sol pleno e rega mínima, adaptado a solos secos.",
-    tag: "flor cacto sertão nordeste semiárido paisagismo",
     infoLink: "https://pt.wikipedia.org/wiki/Cereus_jamacaru",
   },
   {
@@ -106,7 +98,6 @@ const flowers = [
     origin: "Brasil.",
     floweringPeriod: "Primavera e verão.",
     cultivation: "Precisa de sol pleno e solo fértil e bem drenado.",
-    tag: "flor exótica suco maracujá alimentação",
     infoLink: "https://pt.wikipedia.org/wiki/Passiflora_edulis",
   },
   {
@@ -117,7 +108,6 @@ const flowers = [
     origin: "Mata Atlântica, Brasil.",
     floweringPeriod: "Verão.",
     cultivation: "Prefere sol pleno e solos bem drenados.",
-    tag: "flor paisagismo cerca viva tropical resistência",
     infoLink: "https://pt.wikipedia.org/wiki/Clusia",
   },
   {
@@ -128,7 +118,6 @@ const flowers = [
     origin: "Campos rupestres, Brasil.",
     floweringPeriod: "Ano todo, dependendo da espécie.",
     cultivation: "Sol pleno, solos arenosos e bem drenados.",
-    tag: "flor rupestre esférica delicada rochoso árido",
     infoLink: "https://pt.wikipedia.org/wiki/Paepalanthus",
   },
   {
@@ -139,7 +128,6 @@ const flowers = [
     origin: "América Tropical.",
     floweringPeriod: "Ano todo.",
     cultivation: "Sol pleno, solos pobres e bem drenados.",
-    tag: "arbusto resistente flores coloridas paisagismo",
     infoLink: "https://pt.wikipedia.org/wiki/Cambar%C3%A1_(%C3%A1rvore)",
   },
   {
@@ -150,7 +138,6 @@ const flowers = [
     origin: "Florestas tropicais.",
     floweringPeriod: "Ano todo em condições ideais.",
     cultivation: "Sol pleno ou meia-sombra, solos ricos e úmidos.",
-    tag: "planta exótica vibrante beija-flores tropical",
     infoLink: "https://pt.wikipedia.org/wiki/Helic%C3%B4nia",
   },
   {
@@ -161,7 +148,6 @@ const flowers = [
     origin: "Mata Atlântica, Brasil.",
     floweringPeriod: "Primavera e verão.",
     cultivation: "Sol pleno, solos ricos e bem drenados.",
-    tag: "arbusto ornamental flores mudam cor mata atlântica",
     infoLink: "https://pt.wikipedia.org/wiki/Tibouchina_mutabilis",
   },
   {
@@ -172,7 +158,6 @@ const flowers = [
     origin: "Brasil e Argentina.",
     floweringPeriod: "Primavera e verão.",
     cultivation: "Sol pleno, solos ricos e úmidos.",
-    tag: "flor vermelha brilhante aves beleza brasileira",
     infoLink: "https://pt.wikipedia.org/wiki/Corticeira",
   },
   {
@@ -183,7 +168,6 @@ const flowers = [
     origin: "América Central, popular no Brasil.",
     floweringPeriod: "Primavera e verão.",
     cultivation: "Sol pleno, solos bem drenados e pouca rega.",
-    tag: "flor perfumada tropical paisagismo beleza",
     infoLink: "https://pt.wikipedia.org/wiki/Jasmim-manga",
   },
   {
@@ -194,7 +178,6 @@ const flowers = [
     origin: "América do Sul.",
     floweringPeriod: "Primavera a outono.",
     cultivation: "Sol pleno, solos bem drenados e úmidos.",
-    tag: "trepadeira flores azuis roxas cercas pergolados",
     infoLink: "https://pt.wikipedia.org/wiki/Gl%C3%B3ria-da-manh%C3%A3",
   },
   {
@@ -205,7 +188,6 @@ const flowers = [
     origin: "América Central e do Sul.",
     floweringPeriod: "Verão.",
     cultivation: "Sol pleno ou meia-sombra, solos úmidos.",
-    tag: "flor árvore fortuna flores grandes prosperidade",
     infoLink: "https://pt.wikipedia.org/wiki/Pachira_aquatica",
   },
   {
@@ -216,7 +198,6 @@ const flowers = [
     origin: "América Tropical.",
     floweringPeriod: "Ano todo.",
     cultivation: "Meia-sombra, solos ricos e úmidos.",
-    tag: "flor interna paz pureza brácteas brancas",
     infoLink: "https://pt.wikipedia.org/wiki/Spathiphyllum_wallisii",
   },
   {
@@ -227,7 +208,6 @@ const flowers = [
     origin: "Nativa das florestas tropicais da Ásia.",
     floweringPeriod: "Primavera e verão.",
     cultivation: "Meia-sombra, solos bem drenados e úmidos.",
-    tag: "orquídea exótica sapatos elegantes cores variadas",
     infoLink: "https://pt.wikipedia.org/wiki/Paphiopedilum",
   },
 ]
@@ -245,9 +225,7 @@ function getSearchQuery() {
 
 function filterFlowers(query) {
   return flowers.filter(flower =>
-    formatString(flower.name).includes(query) ||
-    formatString(flower.scientificName).includes(query) ||
-    formatString(flower.tag).includes(query)
+    formatString(flower.name).includes(query)
   );
 }
 
