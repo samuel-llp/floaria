@@ -186,7 +186,7 @@ header {
   margin-bottom: 4rem;
 }
 
-.card-hidden {
+.card {
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -195,11 +195,11 @@ header {
   transition: transform 0.1s ease, box-shadow 0.3s ease;
 }
 
-.card-hidden:hover {
+.card:hover {
   transform: scale(1.05);
 }
 
-.card-preview {
+.modal-card {
   z-index: 3;
   display: none;
   flex-direction: column;

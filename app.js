@@ -231,7 +231,6 @@ const flowers = [
     infoLink: "https://pt.wikipedia.org/wiki/Paphiopedilum",
   },
 ]
-
 function formatString(text) {
   return text
     .normalize('NFD')
@@ -269,9 +268,9 @@ function updateFlower(flowers) {
   attachCardToggle();
 }
 
-function renderHiddenCard(flower) {
+function renderCard(flower) {
   return `
-    <div class="card-hidden">
+    <div class="card">
       <div class="image-container">
         <img src="${flower.imageUrl}" alt="${flower.name}" class="image glass-card"/>
       </div>
@@ -286,9 +285,9 @@ function renderHiddenCard(flower) {
   `;
 }
 
-function renderPreviewCard(flower) {
+function renderModalCard(flower) {
   return `
-    <div class="card-preview glass-card">
+    <div class="modal-card glass-card">
       <div class="image-container">
         <img src="${flower.imageUrl}" alt="${flower.name}" class="image glass-card"/>
       </div>
@@ -312,10 +311,9 @@ function renderPreviewCard(flower) {
 function renderFlower(flower) {
   return `
     <div class="flower-card">
-      ${renderHiddenCard(flower)}
-      ${renderPreviewCard(flower)}
+      ${renderCard(flower)}
+      ${renderModalCard(flower)}
     </div>
-    <div class="overlay"></div>
   `;
 }
 
@@ -344,17 +342,17 @@ function attachCardToggle() {
 }
 
 function togglePreview(card) {
-  const previewCard = card.querySelector('.card-preview');
+  const modalCard = card.querySelector('.modal-card');
   const overlay = document.querySelector('.overlay');
-  const isPreviewVisible = previewCard.style.display === 'block';
+  const isPreviewVisible = modalCard.style.display === 'block';
 
-  previewCard.style.display = isPreviewVisible ? 'none' : 'block';
+  modalCard.style.display = isPreviewVisible ? 'none' : 'block';
   overlay.style.display = isPreviewVisible ? 'none' : 'block';
 }
 
 function hideAllPreviews() {
-  document.querySelectorAll('.card-preview').forEach(previewCard => {
-    previewCard.style.display = 'none';
+  document.querySelectorAll('.modal-card').forEach(modalCard => {
+    modalCard.style.display = 'none';
   });
   document.querySelector('.overlay').style.display = 'none';
 }
