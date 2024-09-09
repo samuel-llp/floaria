@@ -268,34 +268,23 @@ function renderCard(flower) {
   `;
 }
 
-function renderModalCard(flower) {
-  return `
-    <div class="modal-card glass-card">
-      <div class="image-container">
-        <img src="${flower.imageUrl}" alt="${flower.name}" class="image glass-card"/>
-      </div>
-      <div class="labels">
-        <div class="names">
-          <h2 class="font-xl">${flower.name}</h2>
-          <p class="font-caption-w">${flower.scientificName}</p>
-        </div>
-        <p class="font-caption">${flower.description}</p>
-        <div class="information">
-          <p class="font-caption"><span class="font-caption-w">Origem:</span> ${flower.origin}</p>
-          <p class="font-caption"><span class="font-caption-w">Floração:</span> ${flower.floweringPeriod}</p>
-          <p class="font-caption"><span class="font-caption-w">Cultivo:</span> ${flower.cultivation}</p>
-        </div>
-        <a href="${flower.infoLink}" target="_blank" class="button-wiki glass-secundary">Saiba mais</a>
-      </div>
-    </div>
-  `;
+function fillModalWithData(id, card) {
+  const flower = flowers[id];
+  card.querySelector("img").src = flower.imageUrl;
+  card.querySelector("img").alt = flower.name;
+  card.querySelector("h2").innerHTML = flower.name;
+  card.querySelector(".scientific-name").innerHTML = flower.scientificName;
+  card.querySelector(".description").innerHTML = flower.description;
+  card.querySelector(".origin").innerHTML = '<span class="font-caption-w">Origem:</span>' + flower.origin;
+  card.querySelector(".flowering-period").innerHTML = '<span class="font-caption-w">Floração:</span>' + flower.floweringPeriod;
+  card.querySelector(".cultivation").innerHTML = '<span class="font-caption-w">Cultivo:</span>' + flower.cultivation;
+  card.querySelector("a.button-wiki").src = flower.infoLink;
 }
 
-function renderFlower(flower) {
+function renderFlower(flower, index) {
   return `
-    <div class="flower-card">
+    <div class="flower-card" id="flower-${index}">
       ${renderCard(flower)}
-      ${renderModalCard(flower)}
     </div>
   `;
 }
@@ -335,10 +324,11 @@ function attachCardToggle() {
 }
 
 function togglePreview(card) {
-  const modalCard = card.querySelector('.modal-card');
+  const modalCard = document.querySelector('.modal-card');
   const overlay = document.querySelector('.overlay');
   const isPreviewVisible = modalCard.style.display === 'block';
 
+  fillModalWithData(card.id.replace("flower-", ""), modalCard);
   modalCard.style.display = isPreviewVisible ? 'none' : 'block';
   overlay.style.display = isPreviewVisible ? 'none' : 'block';
 }
@@ -367,7 +357,7 @@ function hideSuggestions() {
   suggestionsContainer.style.display = 'none';
 }
 
-function handleClickOutside(event) {
+function handleClickOutsideSuggestion(event) {
   const searchInput = document.getElementById('searchInput');
   const suggestionsContainer = document.getElementById('suggestions');
 
@@ -376,7 +366,7 @@ function handleClickOutside(event) {
   }
 }
 
-document.addEventListener('click', handleClickOutside);
+document.addEventListener('click', handleClickOutsideSuggestion);
 document.getElementById('searchInput').addEventListener('keydown', handleSearchOnEnter);
 document.getElementById('searchInput').addEventListener('input', showSuggestions);
 updateFlower(flowers);
