@@ -211,6 +211,7 @@ const flowers = [
     infoLink: "https://pt.wikipedia.org/wiki/Paphiopedilum",
   },
 ]
+
 function formatString(text) {
   return text
     .normalize('NFD')
@@ -227,6 +228,10 @@ function filterFlowers(query) {
   return flowers.filter(flower =>
     formatString(flower.name).includes(query)
   );
+}
+
+function sortFlowersByName(flowers) {
+  return flowers.sort((a, b) => a.name.localeCompare(b.name));
 }
 
 function renderFlowers(flowers) {
@@ -295,6 +300,16 @@ function renderFlower(flower) {
   `;
 }
 
+function renderSuggestions(suggestions) {
+  const suggestionsContainer = document.getElementById('suggestions');
+  suggestionsContainer.innerHTML = suggestions.map(createSuggestionItem).join('');
+  suggestionsContainer.style.display = suggestions.length ? 'block' : 'none';
+}
+
+function createSuggestionItem(flower) {
+  return `<li onclick="selectSuggestion('${flower.name}')">${flower.name}</li>`;
+}
+
 function handleSearchOnEnter(event) {
   if (event.key === 'Enter') {
     event.preventDefault();
@@ -341,25 +356,27 @@ function showSuggestions() {
   renderSuggestions(suggestions);
 }
 
-function renderSuggestions(suggestions) {
-  const suggestionsContainer = document.getElementById('suggestions');
-  suggestionsContainer.innerHTML = suggestions.map(createSuggestionItem).join('');
-}
-
-function createSuggestionItem(flower) {
-  return `<li onclick="selectSuggestion('${flower.name}')">${flower.name}</li>`;
-}
-
 function selectSuggestion(name) {
   document.getElementById('searchInput').value = name;
   document.getElementById('suggestions').innerHTML = '';
   searchFlowers();
 }
 
-function sortFlowersByName(flowers) {
-  return flowers.sort((a, b) => a.name.localeCompare(b.name));
+function hideSuggestions() {
+  const suggestionsContainer = document.getElementById('suggestions');
+  suggestionsContainer.style.display = 'none';
 }
 
+function handleClickOutside(event) {
+  const searchInput = document.getElementById('searchInput');
+  const suggestionsContainer = document.getElementById('suggestions');
+
+  if (!searchInput.contains(event.target) && !suggestionsContainer.contains(event.target)) {
+    hideSuggestions();
+  }
+}
+
+document.addEventListener('click', handleClickOutside);
 document.getElementById('searchInput').addEventListener('keydown', handleSearchOnEnter);
 document.getElementById('searchInput').addEventListener('input', showSuggestions);
 updateFlower(flowers);
