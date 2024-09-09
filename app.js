@@ -230,7 +230,7 @@ const flowers = [
     tag: "orquídea exótica sapatos elegantes cores variadas",
     infoLink: "https://pt.wikipedia.org/wiki/Paphiopedilum",
   },
-];
+]
 
 function formatString(text) {
   return text
@@ -240,60 +240,80 @@ function formatString(text) {
 }
 
 function getSearchQuery() {
-  return formatString(document.getElementById('searchInput').value.trim());
+  const input = document.getElementById('searchInput').value;
+  return formatString(input);
 }
 
 function filterFlowers(query) {
   return flowers.filter(flower =>
-    formatString(flower.name).includes(query)
+    formatString(flower.name).includes(query) ||
+    formatString(flower.scientificName).includes(query) ||
+    formatString(flower.tag).includes(query)
   );
 }
 
-function updateFlowerCards(flowers) {
-  const resultsSection = document.getElementById('results');
-  resultsSection.innerHTML = flowers.length ? 
-    flowers.sort((a, b) => a.name.localeCompare(b.name)).map(renderFlowerCard).join('') : 
-    renderNoResultsMessage();
-  attachCardToggleEvents();
+function renderFlowers(flowers) {
+  return flowers.map(renderFlower).join('');
 }
 
-function renderNoResultsMessage() {
+function renderNoResults() {
   return `<p class="font-caption">Nada foi encontrado. Tente outra busca.</p>`;
 }
 
-function renderFlowerCard(flower) {
+function updateFlower(flowers) {
+  const resultsSection = document.getElementById('results');
+  const sortedFlowers = sortFlowersByName(flowers);
+  resultsSection.innerHTML = sortedFlowers.length
+    ? renderFlowers(sortedFlowers)
+    : renderNoResults();
+  attachCardToggle();
+}
+
+function renderHiddenCard(flower) {
+  return `
+    <div class="card-hidden">
+      <div class="image-container">
+        <img src="${flower.imageUrl}" alt="${flower.name}" class="image glass-card"/>
+      </div>
+      <div class="labels">
+        <div class="names">
+          <h2 class="font-xl">${flower.name}</h2>
+          <p class="font-caption-w">${flower.scientificName}</p>
+        </div>
+        <p class="font-caption">${flower.description}</p>
+      </div>
+    </div>
+  `;
+}
+
+function renderPreviewCard(flower) {
+  return `
+    <div class="card-preview glass-card">
+      <div class="image-container">
+        <img src="${flower.imageUrl}" alt="${flower.name}" class="image glass-card"/>
+      </div>
+      <div class="labels">
+        <div class="names">
+          <h2 class="font-xl">${flower.name}</h2>
+          <p class="font-caption-w">${flower.scientificName}</p>
+        </div>
+        <p class="font-caption">${flower.description}</p>
+        <div class="information">
+          <p class="font-caption"><span class="font-caption-w">Origem:</span> ${flower.origin}</p>
+          <p class="font-caption"><span class="font-caption-w">Floração:</span> ${flower.floweringPeriod}</p>
+          <p class="font-caption"><span class="font-caption-w">Cultivo:</span> ${flower.cultivation}</p>
+        </div>
+        <a href="${flower.infoLink}" target="_blank" class="button-wiki glass-secundary">Saiba mais</a>
+      </div>
+    </div>
+  `;
+}
+
+function renderFlower(flower) {
   return `
     <div class="flower-card">
-      <div class="card-hidden">
-        <div class="image-container">
-          <img src="${flower.imageUrl}" alt="${flower.name}" class="image glass-card"/>
-        </div>
-        <div class="labels">
-          <div class="names">
-            <h2 class="font-xl">${flower.name}</h2>
-            <p class="font-caption-w">${flower.scientificName}</p>
-          </div>
-          <p class="font-caption">${flower.description}</p>
-        </div>
-      </div>
-      <div class="card-preview glass-card">
-        <div class="image-container">
-          <img src="${flower.imageUrl}" alt="${flower.name}" class="image glass-card"/>
-        </div>
-        <div class="labels">
-          <div class="names">
-            <h2 class="font-xl">${flower.name}</h2>
-            <p class="font-caption-w">${flower.scientificName}</p>
-          </div>
-          <p class="font-caption">${flower.description}</p>
-          <div class="information">
-            <p class="font-caption"><span class="font-caption-w">Origem:</span> ${flower.origin}</p>
-            <p class="font-caption"><span class="font-caption-w">Floração:</span> ${flower.floweringPeriod}</p>
-            <p class="font-caption"><span class="font-caption-w">Cultivo:</span> ${flower.cultivation}</p>
-          </div>
-          <a href="${flower.infoLink}" target="_blank" class="button-wiki glass-secundary">Saiba mais</a>
-        </div>
-      </div>
+      ${renderHiddenCard(flower)}
+      ${renderPreviewCard(flower)}
     </div>
     <div class="overlay"></div>
   `;
@@ -301,78 +321,69 @@ function renderFlowerCard(flower) {
 
 function handleSearchOnEnter(event) {
   if (event.key === 'Enter') {
-    searchFlowers();
     event.preventDefault();
+    searchFlowers();
   }
 }
 
 function searchFlowers() {
-  updateFlowerCards(filterFlowers(getSearchQuery()));
+  const query = getSearchQuery();
+  const filteredFlowers = filterFlowers(query);
+  updateFlower(filteredFlowers);
 }
 
-function attachCardToggleEvents() {
-  const overlay = document.querySelector('.overlay');
-  
+function attachCardToggle() {
   document.querySelectorAll('.flower-card').forEach(card => {
     card.addEventListener('click', (event) => {
       event.stopPropagation();
       togglePreview(card);
     });
   });
-  
-  overlay.addEventListener('click', hideAllPreviews);
+
+  document.querySelector('.overlay').addEventListener('click', hideAllPreviews);
 }
 
 function togglePreview(card) {
   const previewCard = card.querySelector('.card-preview');
   const overlay = document.querySelector('.overlay');
-  
-  const isVisible = previewCard.classList.contains('visible');
-  
-  previewCard.classList.toggle('visible', !isVisible);
-  overlay.classList.toggle('visible', !isVisible);
+  const isPreviewVisible = previewCard.style.display === 'block';
+
+  previewCard.style.display = isPreviewVisible ? 'none' : 'block';
+  overlay.style.display = isPreviewVisible ? 'none' : 'block';
 }
 
 function hideAllPreviews() {
-  document.querySelectorAll('.card-preview').forEach(previewCard => 
-    previewCard.classList.remove('visible')
-  );
-  document.querySelector('.overlay').classList.remove('visible');
+  document.querySelectorAll('.card-preview').forEach(previewCard => {
+    previewCard.style.display = 'none';
+  });
+  document.querySelector('.overlay').style.display = 'none';
 }
 
 function showSuggestions() {
-  const input = getSearchQuery();
-  const suggestionsContainer = document.getElementById('suggestions');
-  suggestionsContainer.innerHTML = '';
-
-  if (input) {
-    renderSuggestions(filterFlowers(input));
-  }
+  const query = getSearchQuery();
+  const suggestions = filterFlowers(query);
+  renderSuggestions(suggestions);
 }
 
 function renderSuggestions(suggestions) {
   const suggestionsContainer = document.getElementById('suggestions');
-  
-  suggestions.forEach(flower => {
-    suggestionsContainer.appendChild(createSuggestionItem(flower));
-  });
+  suggestionsContainer.innerHTML = suggestions.map(createSuggestionItem).join('');
 }
 
 function createSuggestionItem(flower) {
-  const suggestionItem = document.createElement('li');
-  suggestionItem.textContent = flower.name;
-  suggestionItem.onclick = () => selectSuggestion(flower.name);
-  return suggestionItem;
+  return `<li onclick="selectSuggestion('${flower.name}')">${flower.name}</li>`;
 }
 
 function selectSuggestion(name) {
-  const searchInput = document.getElementById('searchInput');
-  searchInput.value = name;
+  document.getElementById('searchInput').value = name;
   document.getElementById('suggestions').innerHTML = '';
   searchFlowers();
 }
 
+function sortFlowersByName(flowers) {
+  return flowers.sort((a, b) => a.name.localeCompare(b.name));
+}
+
 document.getElementById('searchInput').addEventListener('keydown', handleSearchOnEnter);
 document.getElementById('searchInput').addEventListener('input', showSuggestions);
-
-updateFlowerCards(flowers);
+updateFlower(flowers);
